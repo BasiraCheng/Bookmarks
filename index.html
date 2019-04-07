@@ -8,7 +8,7 @@
 <body>
     <header></header>
     <main>
-        <div class="wrapper" id="mainxxx">
+        <div class="wrapper" id="main">
 
         </div>
     </main>
@@ -29,25 +29,41 @@
         }
         index = 0
         while(index< keys['length']){
-            divxxx = document.createElement('div')
-            mainxxx.appendChild(divxxx)
+            div = document.createElement('div')
+            div.className = 'row'
+            main.appendChild(div)
             row = keys[index]
             index2 = 0
             while(index2< row['length']){
-                kbdxxx = document.createElement('kbd')
-                kbdxxx.textContent = row[index2]
-                buttonX = document.createElement('button')
-                buttonX.textContent = '编辑'
-                buttonX.id = row[index2]
-                buttonX.onclick =function(xzkjcnxlkcjlk){
-                    key = xzkjcnxlkcjlk['target']['id']
+                kbd = document.createElement('kbd')
+                span = document.createElement('span')
+                span.textContent = row[index2]
+                span.className ='text'
+                kbd.appendChild(span)
+                kbd.className = 'key'
+                button = document.createElement('button')
+                button.textContent = '编辑'
+                button.id = row[index2]
+                img = document.createElement('img')
+                if(hash[row[index2]]){
+                img.src = 'http://'+hash[row[index2]] + '/favicon.ico'
+                }else{
+                    img.src = '//i.loli.net/2019/04/07/5ca99445d6c24.png'
+                }
+                img.onerror = function(xxx){
+                    xxx.target.src = '//i.loli.net/2019/04/07/5ca99445d6c24.png'
+                }
+                button.onclick =function(xzkjcnxlkcjlk){
+                    button2 = xzkjcnxlkcjlk['target']
+                    img2 = button2.previousSibling
+                    key = button2['id']
                     x = prompt('给我一个网址')
                     hash[key] = x
                     localStorage.setItem('zzz',JSON.stringify(hash))
-                    console.log(hash)
                 }
-                kbdxxx.appendChild(buttonX)
-                divxxx.appendChild(kbdxxx)
+                kbd.appendChild(img)
+                kbd.appendChild(button)
+                div.appendChild(kbd)
                 index2 = index2 + 1
             }
             index = index+1
